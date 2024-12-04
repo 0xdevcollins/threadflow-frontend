@@ -2,7 +2,7 @@ import { ShieldTick } from 'iconsax-react';
 import type React from 'react';
 
 interface SmallTitleProps {
-  text: string;
+  text?: string;
 }
 
 const SmallTitle: React.FC<SmallTitleProps> = ({
