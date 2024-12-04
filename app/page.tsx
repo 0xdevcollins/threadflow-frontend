@@ -1,3 +1,5 @@
+import CompanyLogos from '@/shared/CompanyLogos';
+import Discover from '@/shared/Discover';
 import Header from '@/shared/Header/Header';
 import Hero from '@/shared/Header/Hero';
 import Navbar from '@/shared/Navbar/Navbar';
@@ -9,6 +11,8 @@ export default function Home() {
       <Navbar />
       {/* <Header /> */}
       <Hero />
+      <Discover />
+      <CompanyLogos />
       {/* <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
