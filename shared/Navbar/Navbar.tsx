@@ -18,17 +18,19 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { href: '#', label: 'Solution' },
-    { href: '#', label: 'Features' },
-    { href: '#', label: 'Pricing' },
-    { href: '#', label: 'Resources' },
-    { href: '#', label: 'Contact' },
+    { href: '/solution', label: 'Solution' },
+    { href: 'features', label: 'Features' },
+    { href: 'pricing', label: 'Pricing' },
+    { href: 'resources', label: 'Resources' },
+    { href: 'contact', label: 'Contact' },
   ];
 
   return (
     <div className="bg-white">
-      <Top />
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="bg-black">
+        <Top />
+      </div>
+      <div className="container mx-auto px-8 py-4 flex justify-between items-center">
         <Image
           src="/logo.svg"
           width={100}
@@ -44,7 +46,7 @@ const Navbar = () => {
               href={item.href}
               className="text-gray-600 hover:text-gray-900 transition-colors"
             >
-              {item.label}
+              <Button>{item.label}</Button>
             </Link>
           ))}
         </div>
