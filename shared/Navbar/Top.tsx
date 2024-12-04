@@ -12,7 +12,7 @@ import React from 'react';
 
 const Top = () => {
   return (
-    <div className="bg-black px-4 py-2 md:px-6 md:py-4 w-full">
+    <div className="container mx-auto bg-black px-4 py-2 md:px-8 md:py-4 w-full">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
         <div className="flex gap-1 items-center text-white/70 text-sm">
           <Phone size="16" /> <span>+234 9065377671</span>

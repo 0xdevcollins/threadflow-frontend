@@ -27,8 +27,10 @@ const Navbar = () => {
 
   return (
     <div className="bg-white">
-      <Top />
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="bg-black">
+        <Top />
+      </div>
+      <div className="container mx-auto px-8 py-4 flex justify-between items-center">
         <Image
           src="/logo.svg"
           width={100}
