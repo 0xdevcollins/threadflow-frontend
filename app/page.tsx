@@ -1,10 +1,14 @@
+import Header from '@/shared/Header/Header';
+import Hero from '@/shared/Header/Hero';
 import Navbar from '@/shared/Navbar/Navbar';
 import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div className="bg-red-500">
+    <div className="">
       <Navbar />
+      <Header />
+      {/* <Hero /> */}
       {/* <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
