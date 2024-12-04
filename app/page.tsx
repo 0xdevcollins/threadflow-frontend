@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <div className="">
       <Navbar />
-      <Header />
-      {/* <Hero /> */}
+      {/* <Header /> */}
+      <Hero />
       {/* <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
