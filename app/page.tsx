@@ -1,4 +1,5 @@
 import CompanyLogos from '@/shared/CompanyLogos';
+import CTA from '@/shared/CTA';
 import Discover from '@/shared/Discover';
 import Header from '@/shared/Header/Header';
 import Hero from '@/shared/Header/Hero';
@@ -8,11 +9,12 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <div className="">
-      <Navbar />
+      {/* <Navbar /> */}
       {/* <Header /> */}
       <Hero />
       <Discover />
       <CompanyLogos />
+      <CTA />
       {/* <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"

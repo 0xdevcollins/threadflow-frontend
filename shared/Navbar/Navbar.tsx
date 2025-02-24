@@ -1,115 +1,134 @@
 'use client';
 
-import React, { useState } from 'react';
-import Top from './Top';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Menu, X } from 'lucide-react';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import Top from './Top';
 
-const Navbar = () => {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
-    { href: '/solution', label: 'Solution' },
-    { href: 'features', label: 'Features' },
-    { href: 'pricing', label: 'Pricing' },
-    { href: 'resources', label: 'Resources' },
-    { href: 'contact', label: 'Contact' },
+  const menuItems = [
+    'Solutions',
+    'How It Works',
+    'Shops',
+    'Pricing',
+    'Support',
   ];
 
   return (
-    <div className="bg-white">
-      <div className="bg-black">
-        <Top />
-      </div>
-      <div className="container mx-auto px-8 py-4 flex justify-between items-center">
-        <Image
-          src="/logo.svg"
-          width={100}
-          height={100}
-          alt="Logo"
-          className="w-24 h-auto"
-        />
+    <header className="w-full relative">
+      <Top />
 
-        <div className="hidden md:flex space-x-6">
-          {navItems.map((item) => (
+      <nav className="bg-white shadow-md relative">
+        <div className="flex items-center justify-between px-4 sm:px-8 md:px-16 lg:px-24 xl:px-[120px] h-16 relative z-50">
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <Image src="/logo.svg" alt="Threadflow" width={150} height={50} />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6 text-sm font-medium">
+            {menuItems.map((item) => (
+              <motion.div
+                key={item} // <-- FIXED: Using item name as the key
+                whileHover={{ scale: 1.1, color: '#333' }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link
+                  href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="hover:text-gray-700"
+                >
+                  {item}
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop CTA Buttons */}
+          <div className="hidden md:flex items-center gap-4">
             <Link
-              key={item.href}
-              href={item.href}
-              className="text-gray-600 hover:text-gray-900 transition-colors"
+              href="/login"
+              className="text-sm font-medium hover:text-gray-700"
             >
-              <Button>{item.label}</Button>
+              Log in
             </Link>
-          ))}
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Button className="bg-black text-white hover:bg-gray-900 px-5 py-2 flex items-center gap-2">
+                Get Started <ChevronRight size={16} />
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden flex items-center justify-center p-2 relative z-50"
+            onClick={() => setIsOpen(!isOpen)}
+            whileTap={{ scale: 0.9 }}
+            animate={{ rotate: isOpen ? 90 : 0 }}
+          >
+            {isOpen ? (
+              <X
+                size={28}
+                className="text-black transition-transform duration-300"
+              />
+            ) : (
+              <Menu
+                size={28}
+                className="text-black transition-transform duration-300"
+              />
+            )}
+          </motion.button>
         </div>
 
-        <div className="hidden md:flex items-center space-x-4">
-          <Button variant="outline" className="text-black">
-            Login
-          </Button>
-          <Button>
-            Get Started <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
-
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-            <div className="flex flex-col h-full">
-              <div className="flex justify-between items-center mb-6">
-                <SheetHeader>
-                  <SheetTitle>
-                    <Image
-                      src="/logo.svg"
-                      width={100}
-                      height={100}
-                      alt="Logo"
-                      className="w-24 h-auto"
-                      loading="lazy"
-                    />
-                  </SheetTitle>
-                </SheetHeader>
-                {/* <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-                  <X />
-                </Button> */}
-              </div>
-              <nav className="flex flex-col space-y-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-gray-600 hover:text-gray-900 transition-colors"
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden bg-white shadow-md absolute top-16 left-0 w-full z-40"
+            >
+              <div className="flex flex-col items-start p-4 space-y-4 text-sm">
+                {menuItems.map((item) => (
+                  <motion.div
+                    key={item}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full"
                   >
-                    {item.label}
-                  </Link>
+                    <Link
+                      href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="w-full py-2"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item}
+                    </Link>
+                  </motion.div>
                 ))}
-              </nav>
-              <div className="mt-auto space-y-4">
-                <Button variant="outline" className="w-full text-black">
-                  Login
-                </Button>
-                <Button className="w-full">
-                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
-      </div>
-    </div>
-  );
-};
 
-export default Navbar;
+                <div className="flex flex-col gap-3 mt-4 w-full">
+                  <Link
+                    href="/login"
+                    className="text-sm font-medium w-full text-center py-2"
+                  >
+                    Log in
+                  </Link>
+                  <motion.div whileHover={{ scale: 1.05 }}>
+                    <Button className="bg-black text-white hover:bg-gray-900 w-full py-2">
+                      Get Started
+                    </Button>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+    </header>
+  );
+}
