@@ -25,16 +25,14 @@ export default function Navbar() {
 
       <nav className="bg-white shadow-md relative">
         <div className="flex items-center justify-between px-4 sm:px-8 md:px-16 lg:px-24 xl:px-[120px] h-16 relative z-50">
-          {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image src="/logo.svg" alt="Threadflow" width={150} height={50} />
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 text-sm font-medium">
             {menuItems.map((item) => (
               <motion.div
-                key={item} // <-- FIXED: Using item name as the key
+                key={item}
                 whileHover={{ scale: 1.1, color: '#333' }}
                 transition={{ duration: 0.2 }}
               >
@@ -48,7 +46,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/login"
@@ -63,7 +60,6 @@ export default function Navbar() {
             </motion.div>
           </div>
 
-          {/* Mobile Menu Button */}
           <motion.button
             className="md:hidden flex items-center justify-center p-2 relative z-50"
             onClick={() => setIsOpen(!isOpen)}
@@ -84,7 +80,6 @@ export default function Navbar() {
           </motion.button>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
