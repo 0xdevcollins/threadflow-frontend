@@ -1,4 +1,4 @@
-import { ShieldTick } from 'iconsax-react';
+import { Shield } from 'lucide-react';
 import type React from 'react';
 
 interface SmallTitleProps {
@@ -11,7 +11,7 @@ const SmallTitle: React.FC<SmallTitleProps> = ({
   return (
     <div className="max-w-fit bg-[#F9FAFB] rounded-[32px] border border-black/20 py-3 px-4 flex gap-2 items-center">
       <span className="rounded-full bg-white shadow p-1">
-        <ShieldTick size={12} color="#000000" />
+        <Shield size={12} color="#000000" />
       </span>
       <p className="text-center text-xs font-medium uppercase text-black">
         {text}
