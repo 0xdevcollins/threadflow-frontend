@@ -4,6 +4,7 @@ import Discover from '@/shared/Discover';
 import Header from '@/shared/Header/Header';
 import Hero from '@/shared/Header/Hero';
 import Navbar from '@/shared/Navbar/Navbar';
+import ReadMore from '@/shared/ReadMore';
 import Image from 'next/image';
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Discover />
       <CompanyLogos />
+      <ReadMore />
       {/* <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
